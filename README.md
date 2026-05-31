@@ -39,10 +39,9 @@ Home Assistant Custom Component für die **Landi FT0360** Wetterstation
 
 ### Via HACS (empfohlen)
 
-1. HACS öffnen → **Integrationen** → **⋮** → **Benutzerdefinierte Repositories**
-2. URL `https://github.com/DeadMonkey428/ha_ft0360` hinzufügen, Kategorie: **Integration**
-3. Integration suchen und installieren
-4. Home Assistant neu starten
+1. Repository in HACS hinzufügen: [![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=DeadMonkey428&repository=ha_ft0360&category=integration)
+2. Integration in HACS suchen und installieren
+3. Home Assistant neu starten
 
 ### Manuell
 
@@ -52,7 +51,7 @@ Den Ordner `custom_components/ft0360` in dein Home Assistant Verzeichnis `config
 
 ## Einrichtung
 
-**Einstellungen → Geräte & Dienste → Integration hinzufügen → FT0360 Weather Station**
+Integration über die UI einrichten: [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=ft0360)
 
 - **Host**: IP-Adresse oder Hostname der Wetterstation (z. B. `192.168.1.100`)
 - **Abfrageintervall**: Polling-Intervall in Sekunden (Standard: 30 s, Min: 5 s, Max: 300 s)
