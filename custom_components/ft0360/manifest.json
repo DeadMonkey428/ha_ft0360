@@ -9,7 +9,6 @@
   "integration_type": "device",
   "iot_class": "local_polling",
   "issue_tracker": "https://github.com/DeadMonkey428/ha_ft0360/issues",
-  "homeassistant": "2026.5.4",
   "requirements": [],
   "version": "0.2.1.3"
 }
