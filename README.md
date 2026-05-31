@@ -63,7 +63,7 @@ Die Station muss im lokalen Netzwerk erreichbar sein und die Endpunkte `/client?
 
 ## Voraussetzungen
 
-- Home Assistant ≥ 2024.6.0
+- Home Assistant ≥ 2026.5.4
 - Wetterstation im selben Netzwerk wie HA erreichbar
 
 ---
