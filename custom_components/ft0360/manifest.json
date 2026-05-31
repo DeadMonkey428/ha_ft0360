@@ -2,7 +2,7 @@
   "domain": "ft0360",
   "name": "FT0360 Weather Station",
   "after_dependencies": [],
-  "codeowners": [],
+  "codeowners": ["@DeadMonkey428"],
   "config_flow": true,
   "dependencies": [],
   "documentation": "https://github.com/DeadMonkey428/ha_ft0360",
