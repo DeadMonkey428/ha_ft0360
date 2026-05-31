@@ -1,0 +1,15 @@
+{
+  "domain": "ft0360",
+  "name": "FT0360 Weather Station",
+  "after_dependencies": [],
+  "codeowners": [],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/tomkruesi/ha-ft0360",
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/tomkruesi/ha-ft0360/issues",
+  "homeassistant": "2026.5.4",
+  "requirements": [],
+  "version": "0.2.1.2"
+}
