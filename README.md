@@ -1,6 +1,6 @@
 # FT0360 Weather Station – Home Assistant Integration
 
-Home Assistant Custom Component für die **Landi FT0360** Wetterstation (kompatibel mit Fine Offset / EasyWeather Stationen mit lokalem HTTP-API).
+Home Assistant Custom Component für die **Landi FT0360** Wetterstation
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
 
@@ -65,3 +65,17 @@ Die Station muss im lokalen Netzwerk erreichbar sein und die Endpunkte `/client?
 
 - Home Assistant ≥ 2024.6.0
 - Wetterstation im selben Netzwerk wie HA erreichbar
+
+---
+
+## Entwicklungsumgebung
+
+Entwickelt und getestet auf:
+
+| Komponente | Version |
+|---|---|
+| Home Assistant OS | 17.3 |
+| Home Assistant Core | 2026.5.4 |
+| Supervisor | 2026.05.1 |
+| Frontend | 20260429.4 |
+| Installationsmethode | Home Assistant OS |
