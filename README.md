@@ -1,6 +1,6 @@
 # FT0360 Weather Station – Home Assistant Integration
 
-Home Assistant Custom Component für die **Landi FT0360** Wetterstation
+Home Assistant Custom Component für die **[Landi FT0360 WiFi Wetterstation Pro](https://www.landi.ch/shop/computer-und-zubehoer_150901/wifi-wetterstation-pro_105783)**
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
 
