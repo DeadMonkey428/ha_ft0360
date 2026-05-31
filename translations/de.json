@@ -1,0 +1,114 @@
+{
+  "title": "FT0360 Weather Station",
+  "config": {
+    "step": {
+      "user": {
+        "title": "FT0360 Weather Station einrichten",
+        "description": "Gib die IP-Adresse oder den Hostnamen deiner FT0360 Wetterstation ein.",
+        "data": {
+          "host": "IP-Adresse oder Hostname",
+          "update_interval": "Aktualisierungsintervall"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Verbindung fehlgeschlagen. Prüfe IP-Adresse, Netzwerk und den Endpoint /client?command=record.",
+      "unknown": "Unerwarteter Fehler"
+    },
+    "abort": {
+      "already_configured": "Diese Wetterstation ist bereits eingerichtet."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "FT0360 Optionen",
+        "description": "Passe das Polling-Intervall an.",
+        "data": {
+          "update_interval": "Aktualisierungsintervall"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "indoor_temperature": {
+        "name": "Innentemperatur"
+      },
+      "indoor_humidity": {
+        "name": "Innenfeuchtigkeit"
+      },
+      "outdoor_temperature": {
+        "name": "Außentemperatur"
+      },
+      "outdoor_humidity": {
+        "name": "Außenfeuchtigkeit"
+      },
+      "pressure_absolute": {
+        "name": "Luftdruck absolut"
+      },
+      "pressure_relative": {
+        "name": "Luftdruck relativ"
+      },
+      "max_daily_gust": {
+        "name": "Maximale Tagesböe"
+      },
+      "wind_speed": {
+        "name": "Windgeschwindigkeit"
+      },
+      "wind_gust": {
+        "name": "Windböe"
+      },
+      "wind_direction": {
+        "name": "Windrichtung"
+      },
+      "wind_average_2_minute": {
+        "name": "Winddurchschnitt 2 Minuten"
+      },
+      "wind_direction_average_2_minute": {
+        "name": "Windrichtung Durchschnitt 2 Minuten"
+      },
+      "wind_average_10_minute": {
+        "name": "Winddurchschnitt 10 Minuten"
+      },
+      "wind_direction_average_10_minute": {
+        "name": "Windrichtung Durchschnitt 10 Minuten"
+      },
+      "rain_rate": {
+        "name": "Regenrate"
+      },
+      "rain_hour": {
+        "name": "Regen Stunde"
+      },
+      "rain_day": {
+        "name": "Regen Tag"
+      },
+      "rain_week": {
+        "name": "Regen Woche"
+      },
+      "rain_month": {
+        "name": "Regen Monat"
+      },
+      "rain_year": {
+        "name": "Regen Jahr"
+      },
+      "rain_total": {
+        "name": "Regen Gesamt"
+      },
+      "solar_radiation": {
+        "name": "Solarstrahlung"
+      },
+      "uv_index": {
+        "name": "UV-Index"
+      },
+      "wind_direction_text": {
+        "name": "Windrichtung Text"
+      }
+    },
+    "binary_sensor": {
+      "battery_ok": {
+        "name": "Batterie OK"
+      }
+    }
+  }
+}

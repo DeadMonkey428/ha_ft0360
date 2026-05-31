@@ -1,0 +1,114 @@
+{
+  "title": "FT0360 Weather Station",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up FT0360 Weather Station",
+        "description": "Enter the IP address or hostname of your FT0360 weather station.",
+        "data": {
+          "host": "IP address or hostname",
+          "update_interval": "Update interval"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not connect. Check the IP address, network and the /client?command=record endpoint.",
+      "unknown": "Unexpected error"
+    },
+    "abort": {
+      "already_configured": "This weather station is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "FT0360 options",
+        "description": "Adjust the polling interval.",
+        "data": {
+          "update_interval": "Update interval"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "indoor_temperature": {
+        "name": "Indoor temperature"
+      },
+      "indoor_humidity": {
+        "name": "Indoor humidity"
+      },
+      "outdoor_temperature": {
+        "name": "Outdoor temperature"
+      },
+      "outdoor_humidity": {
+        "name": "Outdoor humidity"
+      },
+      "pressure_absolute": {
+        "name": "Absolute pressure"
+      },
+      "pressure_relative": {
+        "name": "Relative pressure"
+      },
+      "max_daily_gust": {
+        "name": "Max daily gust"
+      },
+      "wind_speed": {
+        "name": "Wind speed"
+      },
+      "wind_gust": {
+        "name": "Wind gust"
+      },
+      "wind_direction": {
+        "name": "Wind direction"
+      },
+      "wind_average_2_minute": {
+        "name": "Wind average 2 minutes"
+      },
+      "wind_direction_average_2_minute": {
+        "name": "Wind direction average 2 minutes"
+      },
+      "wind_average_10_minute": {
+        "name": "Wind average 10 minutes"
+      },
+      "wind_direction_average_10_minute": {
+        "name": "Wind direction average 10 minutes"
+      },
+      "rain_rate": {
+        "name": "Rain rate"
+      },
+      "rain_hour": {
+        "name": "Rain hour"
+      },
+      "rain_day": {
+        "name": "Rain day"
+      },
+      "rain_week": {
+        "name": "Rain week"
+      },
+      "rain_month": {
+        "name": "Rain month"
+      },
+      "rain_year": {
+        "name": "Rain year"
+      },
+      "rain_total": {
+        "name": "Rain total"
+      },
+      "solar_radiation": {
+        "name": "Solar radiation"
+      },
+      "uv_index": {
+        "name": "UV index"
+      },
+      "wind_direction_text": {
+        "name": "Wind direction text"
+      }
+    },
+    "binary_sensor": {
+      "battery_ok": {
+        "name": "Battery OK"
+      }
+    }
+  }
+}
