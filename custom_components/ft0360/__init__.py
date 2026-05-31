@@ -33,6 +33,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
             about = await client.async_get_about()
         except FT0360ApiError as err:
             raise UpdateFailed(str(err)) from err
+        except Exception as err:
+            raise UpdateFailed(f"{type(err).__name__}: {err}") from err
         return {"record": record, "about": about, "host": host}
 
     interval = entry.options.get(

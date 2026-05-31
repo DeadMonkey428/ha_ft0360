@@ -36,7 +36,7 @@ class FT0360Client:
                     raise FT0360ApiError(f"Unexpected response from {url}")
                 return data
         except (aiohttp.ClientError, asyncio.TimeoutError, ValueError) as err:
-            raise FT0360ApiError(str(err)) from err
+            raise FT0360ApiError(f"{type(err).__name__}: {err}") from err
 
     async def async_get_record(self) -> dict[str, Any]:
         """Fetch live sensor data."""
