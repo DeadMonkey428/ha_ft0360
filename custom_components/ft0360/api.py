@@ -3,11 +3,14 @@
 from __future__ import annotations
 
 import asyncio
+import logging
 from typing import Any
 
 import aiohttp
 
 from .const import ENDPOINT_ABOUT, ENDPOINT_RECORD
+
+_LOGGER = logging.getLogger(__name__)
 
 
 class FT0360ApiError(Exception):
@@ -33,10 +36,23 @@ class FT0360Client:
                 response.raise_for_status()
                 data = await response.json(content_type=None)
                 if not isinstance(data, dict):
-                    raise FT0360ApiError(f"Unexpected response from {url}")
+                    raise FT0360ApiError(
+                        f"Unexpected response type from {url}: expected dict, got {type(data).__name__}"
+                    )
+                _LOGGER.debug("Got response from %s: %s", url, data)
                 return data
-        except (aiohttp.ClientError, asyncio.TimeoutError, ValueError) as err:
-            raise FT0360ApiError(f"{type(err).__name__}: {err}") from err
+        except FT0360ApiError:
+            raise
+        except asyncio.TimeoutError as err:
+            raise FT0360ApiError(f"Timeout connecting to {url} after 10s") from err
+        except aiohttp.ClientConnectorError as err:
+            raise FT0360ApiError(f"Cannot connect to {self.host}: {err}") from err
+        except aiohttp.ClientResponseError as err:
+            raise FT0360ApiError(f"HTTP {err.status} error from {url}") from err
+        except aiohttp.ClientError as err:
+            raise FT0360ApiError(f"Connection error: {err}") from err
+        except ValueError as err:
+            raise FT0360ApiError(f"Invalid JSON from {url}: {err}") from err
 
     async def async_get_record(self) -> dict[str, Any]:
         """Fetch live sensor data."""
@@ -51,5 +67,7 @@ class FT0360Client:
         about = await self.async_get_about()
         record = await self.async_get_record()
         if "Sensor" not in record:
-            raise FT0360ApiError("Missing Sensor data")
+            raise FT0360ApiError(
+                f"Missing 'Sensor' key in record response. Got keys: {list(record.keys())}"
+            )
         return about, record

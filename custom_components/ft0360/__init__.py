@@ -34,6 +34,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         except FT0360ApiError as err:
             raise UpdateFailed(str(err)) from err
         except Exception as err:
+            _LOGGER.exception("Unexpected error fetching FT0360 data from %s", host)
             raise UpdateFailed(f"{type(err).__name__}: {err}") from err
         return {"record": record, "about": about, "host": host}
 
