@@ -72,6 +72,25 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         """Create the options flow."""
         return FT0360OptionsFlowHandler(config_entry)
 
+    async def _async_validate_and_connect(
+        self, host: str
+    ) -> tuple[dict[str, Any], dict[str, str]]:
+        """Validate connection and return (about, errors)."""
+        errors: dict[str, str] = {}
+        session = async_get_clientsession(self.hass)
+        client = FT0360Client(host, session)
+        try:
+            about, _record = await client.async_validate()
+        except (FT0360ApiError, aiohttp.ClientError) as err:
+            _LOGGER.debug("Unable to connect to FT0360 at %s: %s", host, err)
+            errors["base"] = "cannot_connect"
+            about = {}
+        except Exception:  # noqa: BLE001
+            _LOGGER.exception("Unexpected error while connecting to FT0360 at %s", host)
+            errors["base"] = "unknown"
+            about = {}
+        return about, errors
+
     async def async_step_user(self, user_input: dict[str, Any] | None = None):
         """Handle the initial step."""
         errors: dict[str, str] = {}
@@ -79,18 +98,8 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         if user_input is not None:
             host = str(user_input[CONF_HOST]).strip().replace("http://", "").replace("https://", "").rstrip("/")
             scan_interval = int(user_input[CONF_UPDATE_INTERVAL_FIELD])
-            session = async_get_clientsession(self.hass)
-            client = FT0360Client(host, session)
-
-            try:
-                about, _record = await client.async_validate()
-            except (FT0360ApiError, aiohttp.ClientError) as err:
-                _LOGGER.debug("Unable to connect to FT0360 at %s: %s", host, err)
-                errors["base"] = "cannot_connect"
-            except Exception as err:  # noqa: BLE001
-                _LOGGER.exception("Unexpected error while connecting to FT0360 at %s", host)
-                errors["base"] = "unknown"
-            else:
+            about, errors = await self._async_validate_and_connect(host)
+            if not errors:
                 mac = about.get("MAC") or host
                 await self.async_set_unique_id(str(mac).lower())
                 self._abort_if_unique_id_configured(updates={CONF_HOST: host})
@@ -102,6 +111,33 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         return self.async_show_form(
             step_id="user",
             data_schema=_host_schema(),
+            errors=errors,
+        )
+
+    async def async_step_reconfigure(self, user_input: dict[str, Any] | None = None):
+        """Handle reconfiguration (change host/IP)."""
+        entry = self.hass.config_entries.async_get_entry(self.context["entry_id"])
+        errors: dict[str, str] = {}
+
+        if user_input is not None:
+            host = str(user_input[CONF_HOST]).strip().replace("http://", "").replace("https://", "").rstrip("/")
+            scan_interval = int(user_input[CONF_UPDATE_INTERVAL_FIELD])
+            about, errors = await self._async_validate_and_connect(host)
+            if not errors:
+                return self.async_update_reload_and_abort(
+                    entry,
+                    title=f"FT0360 {host}",
+                    data={CONF_HOST: host, CONF_SCAN_INTERVAL: scan_interval},
+                    reason="reconfigure_successful",
+                )
+
+        current_host = entry.data.get(CONF_HOST, "")
+        current_interval = entry.options.get(
+            CONF_SCAN_INTERVAL, entry.data.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL)
+        )
+        return self.async_show_form(
+            step_id="reconfigure",
+            data_schema=_host_schema(current_host, int(current_interval)),
             errors=errors,
         )
 

@@ -16,7 +16,24 @@
       "unknown": "Unerwarteter Fehler"
     },
     "abort": {
-      "already_configured": "Diese Wetterstation ist bereits eingerichtet."
+      "already_configured": "Diese Wetterstation ist bereits eingerichtet.",
+      "reconfigure_successful": "Konfiguration erfolgreich aktualisiert."
+    }
+  },
+  "reconfigure": {
+    "step": {
+      "reconfigure": {
+        "title": "FT0360 Wetterstation neu konfigurieren",
+        "description": "Aktualisiere die IP-Adresse oder den Hostnamen deiner FT0360 Wetterstation.",
+        "data": {
+          "host": "IP-Adresse oder Hostname",
+          "update_interval": "Aktualisierungsintervall"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Verbindung fehlgeschlagen. Prüfe IP-Adresse, Netzwerk und den Endpoint /client?command=record.",
+      "unknown": "Unerwarteter Fehler"
     }
   },
   "options": {
