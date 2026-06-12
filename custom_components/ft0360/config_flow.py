@@ -124,6 +124,10 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             scan_interval = int(user_input[CONF_UPDATE_INTERVAL_FIELD])
             about, errors = await self._async_validate_and_connect(host)
             if not errors:
+                mac = about.get("MAC")
+                if mac:
+                    await self.async_set_unique_id(str(mac).lower())
+                    self._abort_if_unique_id_mismatch(reason="wrong_device")
                 return self.async_update_reload_and_abort(
                     entry,
                     title=f"FT0360 {host}",

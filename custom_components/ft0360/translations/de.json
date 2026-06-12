@@ -25,7 +25,8 @@
     },
     "abort": {
       "already_configured": "Diese Wetterstation ist bereits eingerichtet.",
-      "reconfigure_successful": "Konfiguration erfolgreich aktualisiert."
+      "reconfigure_successful": "Konfiguration erfolgreich aktualisiert.",
+      "wrong_device": "Die IP-Adresse verweist auf eine andere Wetterstation als die eingerichtete. Um ein anderes Gerät zu verwenden, füge es als neue Integration hinzu."
     }
   },
   "options": {

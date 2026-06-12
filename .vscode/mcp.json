@@ -1,0 +1,13 @@
+{
+  "servers": {
+    "kicad": {
+      "type": "stdio",
+      "command": "kicad-mcp-pro",
+      "args": [],
+      "env": {
+        "KICAD_MCP_PROJECT_DIR": "c:\\Users\\Tom\\Documents\\Wetterstation Landi\\ft0360",
+        "KICAD_MCP_PROFILE": "full"
+      }
+    }
+  }
+}

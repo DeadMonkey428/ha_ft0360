@@ -10,7 +10,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity, DataUpdateCoordinator
 
-from .const import DOMAIN
+from . import FT0360ConfigEntry
 from .entity import device_info_from_coordinator
 
 BATTERY_DESCRIPTION = BinarySensorEntityDescription(
@@ -21,11 +21,11 @@ BATTERY_DESCRIPTION = BinarySensorEntityDescription(
 
 async def async_setup_entry(
     hass: HomeAssistant,
-    entry: ConfigEntry,
+    entry: FT0360ConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Set up FT0360 binary sensors."""
-    coordinator = hass.data[DOMAIN][entry.entry_id]
+    coordinator = entry.runtime_data
     async_add_entities([FT0360BatteryOkBinarySensor(coordinator, entry)])
 
 

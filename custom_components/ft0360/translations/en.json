@@ -9,6 +9,14 @@
           "host": "IP address or hostname",
           "update_interval": "Update interval"
         }
+      },
+      "reconfigure": {
+        "title": "Reconfigure FT0360 Weather Station",
+        "description": "Update the IP address or hostname of your FT0360 weather station.",
+        "data": {
+          "host": "IP address or hostname",
+          "update_interval": "Update interval"
+        }
       }
     },
     "error": {
@@ -16,7 +24,9 @@
       "unknown": "Unexpected error"
     },
     "abort": {
-      "already_configured": "This weather station is already configured."
+      "already_configured": "This weather station is already configured.",
+      "reconfigure_successful": "Re-configuration was successful.",
+      "wrong_device": "The IP address points to a different weather station than the one configured. To use a different device, add it as a new integration."
     }
   },
   "options": {

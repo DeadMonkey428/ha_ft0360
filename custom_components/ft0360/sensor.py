@@ -13,7 +13,6 @@ from homeassistant.components.sensor import (
 )
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import (
-    CONF_HOST,
     DEGREE,
     PERCENTAGE,
     UnitOfPressure,
@@ -23,7 +22,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity, DataUpdateCoordinator
 
-from .const import DOMAIN
+from . import FT0360ConfigEntry
 from .entity import device_info_from_coordinator
 
 
@@ -242,11 +241,11 @@ SENSORS: tuple[FT0360SensorDescription, ...] = (
 
 async def async_setup_entry(
     hass: HomeAssistant,
-    entry: ConfigEntry,
+    entry: FT0360ConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Set up FT0360 sensors."""
-    coordinator = hass.data[DOMAIN][entry.entry_id]
+    coordinator = entry.runtime_data
     entities = [FT0360Sensor(coordinator, entry, description) for description in SENSORS]
     entities.append(FT0360WindDirectionTextSensor(coordinator, entry))
     async_add_entities(entities)
