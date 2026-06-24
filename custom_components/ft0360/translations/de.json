@@ -116,8 +116,8 @@
       }
     },
     "binary_sensor": {
-      "battery_ok": {
-        "name": "Batterie OK"
+      "battery_low": {
+        "name": "Batterie schwach"
       }
     }
   }
